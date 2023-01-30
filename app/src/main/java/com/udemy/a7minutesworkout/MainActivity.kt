@@ -1,7 +1,7 @@
 package com.udemy.a7minutesworkout
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.udemy.a7minutesworkout.databinding.ActivityMainBinding
 
@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.flStart.setOnClickListener {
-            Toast.makeText(this, "Here we will start the exercise", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ExerciseActivity::class.java)
+            startActivity(intent)
         }
     }
 
