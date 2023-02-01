@@ -20,4 +20,6 @@
     <string name="calculate">CALCULATE</string>
     <string name="metric_unit">METRIC UNIT</string>
     <string name="us_unit">US UNIT</string>
+    <string name="feet">Feet</string>
+    <string name="inch">Inch</string>
 </resources>
