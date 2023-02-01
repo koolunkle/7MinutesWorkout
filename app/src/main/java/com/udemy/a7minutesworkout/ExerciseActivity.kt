@@ -1,5 +1,6 @@
 package com.udemy.a7minutesworkout
 
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -11,6 +12,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.udemy.a7minutesworkout.databinding.ActivityExerciseBinding
+import com.udemy.a7minutesworkout.databinding.DialogCustomBackConfirmationBinding
 import java.util.*
 
 class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -55,10 +57,30 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         tts = TextToSpeech(this, this)
 
         binding.toolbarExercise.setNavigationOnClickListener {
-            onBackPressed()
+            customDialogForBackButton()
         }
         setupRestView()
         setupExerciseStatusRecyclerView()
+    }
+
+    override fun onBackPressed() {
+        customDialogForBackButton()
+    }
+
+    private fun customDialogForBackButton() {
+        val customDialog = Dialog(this)
+        val dialogBinding = DialogCustomBackConfirmationBinding.inflate(layoutInflater)
+        customDialog.setContentView(dialogBinding.root)
+        customDialog.setCanceledOnTouchOutside(false)
+
+        dialogBinding.btnYes.setOnClickListener {
+            finish()
+            customDialog.dismiss()
+        }
+        dialogBinding.btnNo.setOnClickListener {
+            customDialog.dismiss()
+        }
+        customDialog.show()
     }
 
     private fun setupExerciseStatusRecyclerView() {
@@ -136,7 +158,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setRestProgressBar() {
         binding.progressBar.progress = restProgress
-        restTimer = object : CountDownTimer(restTimerDuration * 1000, 1000) {
+        restTimer = object : CountDownTimer(restTimerDuration * 10000, 1000) {
             override fun onTick(p0: Long) {
                 restProgress++
                 binding.progressBar.progress = 10 - restProgress
@@ -154,7 +176,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setExerciseProgressBar() {
         binding.progressBarExercise.progress = exerciseProgress
-        exerciseTimer = object : CountDownTimer(exerciseTimerDuration * 1000, 1000) {
+        exerciseTimer = object : CountDownTimer(exerciseTimerDuration * 30000, 1000) {
             override fun onTick(p0: Long) {
                 exerciseProgress++
                 binding.progressBarExercise.progress = 30 - exerciseProgress
