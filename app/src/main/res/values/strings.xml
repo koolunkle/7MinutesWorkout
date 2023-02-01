@@ -18,4 +18,6 @@
     <string name="height_in_cm">HEIGHT (in cm)</string>
     <string name="your_bmi">Your BMI</string>
     <string name="calculate">CALCULATE</string>
+    <string name="metric_unit">METRIC UNIT</string>
+    <string name="us_unit">US UNIT</string>
 </resources>
