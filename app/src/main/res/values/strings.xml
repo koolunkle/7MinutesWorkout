@@ -22,4 +22,5 @@
     <string name="us_unit">US UNIT</string>
     <string name="feet">Feet</string>
     <string name="inch">Inch</string>
+    <string name="weight_in_pounds">WEIGHT (in pounds)</string>
 </resources>
